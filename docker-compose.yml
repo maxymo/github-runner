@@ -6,7 +6,7 @@ services:
       REPO_URL: https://github.com/maxymo/home-runner
       RUNNER_SCOPE: repo
       ACCESS_TOKEN: ${GH_PAT}
-      RUNNER_NAME_PREFIX: homelab
+      RUNNER_NAME_PREFIX: homelab2
       RANDOM_RUNNER_SUFFIX: "true"
       LABELS: homelab,linux,x64
       EPHEMERAL: "true"
