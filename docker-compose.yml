@@ -6,9 +6,9 @@ services:
       REPO_URL: https://github.com/maxymo/nexus
       RUNNER_SCOPE: repo
       ACCESS_TOKEN: ${GH_PAT}
-      RUNNER_NAME_PREFIX: homelab2
+      RUNNER_NAME_PREFIX: homelab
       RANDOM_RUNNER_SUFFIX: "true"
-      LABELS: homelab,linux,x64
+      LABELS: testing
       EPHEMERAL: "true"
       RUNNER_WORKDIR: /tmp/runner/work
     volumes:
