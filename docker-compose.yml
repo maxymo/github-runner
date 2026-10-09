@@ -1,16 +1,42 @@
+x-runner: &runner
+  image: myoung34/github-runner:latest
+  restart: always
+
+x-env: &env
+  REPO_URL: https://github.com/maxymo/nexus
+  RUNNER_SCOPE: repo
+  ACCESS_TOKEN: ${GH_PAT}
+  RANDOM_RUNNER_SUFFIX: "true"
+  LABELS: testing
+  EPHEMERAL: "true"
+
 services:
-  github-runner:
-    image: myoung34/github-runner:latest
-    restart: always
+  runner-1:
+    <<: *runner
     environment:
-      REPO_URL: https://github.com/maxymo/nexus
-      RUNNER_SCOPE: repo
-      ACCESS_TOKEN: ${GH_PAT}
-      RUNNER_NAME_PREFIX: homelab
-      RANDOM_RUNNER_SUFFIX: "true"
-      LABELS: testing
-      EPHEMERAL: "true"
-      RUNNER_WORKDIR: /tmp/runner/work
+      <<: *env
+      RUNNER_NAME_PREFIX: homelab-1
+      RUNNER_WORKDIR: /opt/gh-runner/work-1
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /tmp/runner:/tmp/runner
+      - /opt/gh-runner/work-1:/opt/gh-runner/work-1
+
+  runner-2:
+    <<: *runner
+    environment:
+      <<: *env
+      RUNNER_NAME_PREFIX: homelab-2
+      RUNNER_WORKDIR: /opt/gh-runner/work-2
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/gh-runner/work-2:/opt/gh-runner/work-2
+
+  runner-3:
+    <<: *runner
+    environment:
+      <<: *env
+      RUNNER_NAME_PREFIX: homelab-3
+      RUNNER_WORKDIR: /opt/gh-runner/work-3
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/gh-runner/work-3:/opt/gh-runner/work-3
